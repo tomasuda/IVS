@@ -21,6 +21,8 @@
 #include <vector>
 #include <stdexcept>
 #include <iostream>
+#include <memory>
+#include <algorithm>
 
 // Místo pro Vaše případné includy, používejte pouze standardní knihovnu tak, aby nebylo nutno upravovat CMake.
 
@@ -31,6 +33,8 @@ struct Node{
     size_t id;  ///< jednoznačný identifikátor uzlu
     size_t color;  ///< celé číslo reprezentující barvu uzlu, výchozí barva je 0 a značí neobarveno
     // doplňte vhodné struktury, pokud potřebujete
+    size_t degree;
+    std::vector<Node*> neighbors;
 };
 
 /**
@@ -204,7 +208,8 @@ public:
 
 protected:
     // doplňte vhodné struktury
-
+    std::vector<std::unique_ptr<Node>> _nodes;
+    std::vector<Edge> _edges;
 };
 
 #endif // TDD_CODE_H_
